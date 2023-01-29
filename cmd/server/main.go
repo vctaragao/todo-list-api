@@ -2,13 +2,17 @@ package main
 
 import (
 	"github.com/labstack/echo/v4"
-	h "github.com/vctaragao/todo-list-api/internal/http"
+	"github.com/vctaragao/todo-list-api/api/http"
+	"github.com/vctaragao/todo-list-api/internal/create"
+	"github.com/vctaragao/todo-list-api/storage"
 )
 
 func main() {
-	e := echo.New()
+	repo := storage.NewDummyAdapter()
 
-	e.GET("/", h.HelloWorld)
+	cs := create.CreateService(repo)
+
+	e := http.RegisterRouter(echo.New(), cs)
 
 	e.Logger.Fatal(e.Start(":1323"))
 }

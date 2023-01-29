@@ -8,7 +8,7 @@ This app has the porpuse to be used for the study of the Go programming language
 
 ### DOMAIN - CRUD Task
 
-- [ ] Create Task
+- [x] Create Task
 - [ ] Remove Task
 - [ ] Update Task
 - [ ] List Tasks
