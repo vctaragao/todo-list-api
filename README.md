@@ -23,9 +23,9 @@ This app has the porpuse to be used for the study of the Go programming language
 
 - [x] Use [Echo](https://echo.labstack.com/) as the framework for the web/http layer
 
-## Architeture
+## Architeture/Desing
 
-The ideia of the archtecture of this project is focus um using three main principels:
+The ideia of the archtecture/desing of this project is focus um using three main principels:
 
 - Hexagonal Architecture
 - Domain Driven Desing
@@ -59,3 +59,14 @@ Its being used as a guidence for the folder struct of the project:
 - **Domain Layer**
   - `/internal/entity`: Folder holding the Entityes of the project 
 
+### Domain Driven Desing
+
+Its being used as a guidance for the files organization and desing of the project. Patterns being used by proposed by DDD
+
+- Entity
+- Repositories
+- Domain Services
+
+### Screaming Archtecture
+
+The application of the Scremming Architeture is being mainly used in the naming of the usecases folder inside the Application Layer, and in its files.
