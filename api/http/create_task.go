@@ -6,7 +6,7 @@ import (
 	"strconv"
 
 	"github.com/labstack/echo/v4"
-	"github.com/vctaragao/todo-list-api/internal/create"
+	cT "github.com/vctaragao/todo-list-api/internal/create_task"
 )
 
 type TaskDto struct {
@@ -14,7 +14,7 @@ type TaskDto struct {
 	Priority    int    `json:"priority"`
 }
 
-func CreateTask(cs create.Service) echo.HandlerFunc {
+func CreateTask(ct cT.Service) echo.HandlerFunc {
 	return func(ctx echo.Context) error {
 		dto := new(TaskDto)
 
@@ -22,9 +22,9 @@ func CreateTask(cs create.Service) echo.HandlerFunc {
 			return err
 		}
 
-		t := create.NewTaskDto(dto.Description, dto.Priority)
+		t := cT.NewTaskDto(dto.Description, dto.Priority)
 
-		id, _ := cs.Create(t)
+		id, _ := ct.Create(t)
 
 		return ctx.String(http.StatusOK, strconv.Itoa(id))
 	}
