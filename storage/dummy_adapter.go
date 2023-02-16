@@ -3,7 +3,7 @@ package storage
 import (
 	"math/rand"
 
-	"github.com/vctaragao/todo-list-api/internal/entity"
+	"github.com/vctaragao/todo-list-api/internal/application/entity"
 )
 
 type DummyAdapter struct {

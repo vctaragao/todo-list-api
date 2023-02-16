@@ -5,7 +5,7 @@ type TaskDto struct {
 	Priority    int
 }
 
-func NewTaskDto(description string, priority int) TaskDto {
+func NewDto(description string, priority int) TaskDto {
 	return TaskDto{
 		Description: description,
 		Priority:    priority,
