@@ -35,7 +35,7 @@ The ideia of the archtecture/desing of this project is focus um using three main
 
 Its being used as a guidence for the folder struct of the project:
 
-![Captura de tela de 2023-01-29 20-22-13](https://user-images.githubusercontent.com/26884793/215372234-8433523b-5082-4335-854f-370a59c95586.png)
+![Onion representation of the archtecture of the project](https://user-images.githubusercontent.com/26884793/215372234-8433523b-5082-4335-854f-370a59c95586.png)
 
 ### Folder Struct
 
@@ -48,13 +48,20 @@ Its being used as a guidence for the folder struct of the project:
 ├── cmd
 │   └── server
 │       └── main.go
+├── go.mod
+├── go.sum
 ├── internal
-│   ├── create_task
-│   │   ├── service.go
-│   │   └── task_dto.go
-│   ├── entity
-│   │   └── task.go
-│   └── repository.go
+│   ├── application
+│   │   ├── create_task
+│   │   │   ├── create.go
+│   │   │   ├── create_task_test.go
+│   │   │   └── task_dto.go
+│   │   ├── entity
+│   │   │   └── task.go
+│   │   └── repository.go
+│   └── todo_list.go
+├── Makefile
+├── README.md
 └── storage
     └── dummy_adapter.go
 ```
@@ -64,10 +71,11 @@ Its being used as a guidence for the folder struct of the project:
   - `/storage`: Folder that will container the differentes ways of persistance that the project has (Mysql, Memory, Redis, etc.)
   - `/cmd`: Folder for holding the main files of the project.
 - **Application Layer**
-  - `/internal/create`: Use-case for the creation of a task
-  - `/internal/*.go`: Files to be for general use inside the application layer (repository.go, etc.)
+  - `internal/todo_list.go`: File to serve as a Facade for the application as the name follows the name of the project
+  - `/internal/application/*.go`: Files to be for general use inside the application layer (repository.go, etc.)
+  - `/internal/application/create_trask`: Use-case for the creation of a task
 - **Domain Layer**
-  - `/internal/entity`: Folder holding the Entityes of the project
+  - `/internal/application/entity`: Folder holding the Entityes of the project
 
 ### Domain Driven Desing
 
