@@ -35,7 +35,7 @@ The ideia of the archtecture/desing of this project is focus um using three main
 
 Its being used as a guidence for the folder struct of the project:
 
-![Onion representation of the archtecture of the project](https://user-images.githubusercontent.com/26884793/215372234-8433523b-5082-4335-854f-370a59c95586.png)
+![Onion representation of the archtecture of the project](https://user-images.githubusercontent.com/26884793/219226513-28d48bfe-2cc1-4112-a720-f9a438890ae8.png)
 
 ### Folder Struct
 
