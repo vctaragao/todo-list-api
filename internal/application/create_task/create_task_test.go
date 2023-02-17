@@ -63,7 +63,7 @@ func TestCreateTask(t *testing.T) {
 }
 
 func setup(tc testCase) (TaskDto, MockRepo) {
-	dto := NewDto(tc.description, tc.priority)
+	dto, _ := NewDto(tc.description, tc.priority)
 
 	repo := MockRepo{
 		id:  tc.expected,
