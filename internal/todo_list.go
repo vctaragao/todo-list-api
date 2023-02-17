@@ -16,6 +16,11 @@ func NewTodoList(repo application.Repository) TodoList {
 }
 
 func (tl TodoList) CreateTask(description string, priority int) (int, error) {
-	dto := create_task.NewDto(description, priority)
+	dto, err := create_task.NewDto(description, priority)
+
+	if err != nil {
+		return 0, err
+	}
+
 	return create_task.Create(dto, tl.Repo)
 }

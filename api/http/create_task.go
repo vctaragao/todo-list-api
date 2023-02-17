@@ -22,7 +22,11 @@ func CreateTask(tl internal.TodoList) echo.HandlerFunc {
 			return err
 		}
 
-		id, _ := tl.CreateTask(dto.Description, dto.Priority)
+		id, err := tl.CreateTask(dto.Description, dto.Priority)
+
+		if err != nil {
+			return ctx.String(http.StatusBadRequest, err.Error())
+		}
 
 		return ctx.String(http.StatusOK, strconv.Itoa(id))
 	}
