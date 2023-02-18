@@ -7,8 +7,10 @@ import (
 	"github.com/vctaragao/todo-list-api/storage"
 )
 
+const SQLITE_FILE_PATH = "todo_list.db"
+
 func main() {
-	repo := storage.NewDummyAdapter()
+	repo := storage.NewSqLite(SQLITE_FILE_PATH)
 
 	ct := internal.NewTodoList(repo)
 
