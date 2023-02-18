@@ -31,5 +31,4 @@ func CreateTask(tl internal.TodoList) echo.HandlerFunc {
 
 		return ctx.JSON(http.StatusOK, &dto)
 	}
-
 }

@@ -9,10 +9,20 @@ This app has the porpuse to be used for the study of the Go programming language
 ### DOMAIN - CRUD Task
 
 - [x] Create Task
+  - [ ] Functional Test (Integrating route and database)
+  - [x] Unit test for the Use Case
 - [ ] Remove Task
+  - [ ] Functional Test (Integrating route and database)
+  - [ ] Unit test for the Use Case
 - [ ] Update Task
+  - [ ] Functional Test (Integrating route and database)
+  - [ ] Unit test for the Use Case
 - [ ] List Tasks
+  - [ ] Functional Test (Integrating route and database)
+  - [ ] Unit test for the Use Case
 - [ ] Show Task
+  - [ ] Functional Test (Integrating route and database)
+  - [ ] Unit test for the Use Case
 
 ### Storage
 
@@ -22,6 +32,11 @@ This app has the porpuse to be used for the study of the Go programming language
 ### Http
 
 - [x] Use [Echo](https://echo.labstack.com/) as the framework for the web/http layer
+- [ ] Add Validation to the routes
+
+### Testing
+
+- [ ] Create a Functional testsuite that roolbacks the database after every test
 
 ## Architeture/Desing
 

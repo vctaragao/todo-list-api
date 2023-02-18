@@ -12,9 +12,9 @@ const SQLITE_FILE_PATH = "todo_list.db"
 func main() {
 	repo := storage.NewSqLite(SQLITE_FILE_PATH)
 
-	ct := internal.NewTodoList(repo)
+	tl := internal.NewTodoList(repo)
 
-	e := http.RegisterRouter(echo.New(), ct)
+	e := http.RegisterRouter(echo.New(), tl)
 
 	e.Logger.Fatal(e.Start(":1323"))
 }
