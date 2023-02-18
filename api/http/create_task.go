@@ -3,13 +3,12 @@ package http
 import (
 	"net/http"
 
-	"strconv"
-
 	"github.com/labstack/echo/v4"
 	"github.com/vctaragao/todo-list-api/internal"
 )
 
 type TaskDto struct {
+	TaskId      int    `json:"task_id"`
 	Description string `json:"description"`
 	Priority    int    `json:"priority"`
 }
@@ -28,6 +27,8 @@ func CreateTask(tl internal.TodoList) echo.HandlerFunc {
 			return ctx.String(http.StatusBadRequest, err.Error())
 		}
 
-		return ctx.String(http.StatusOK, strconv.Itoa(id))
+		dto.TaskId = id
+
+		return ctx.JSON(http.StatusOK, &dto)
 	}
 }

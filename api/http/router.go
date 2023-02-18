@@ -7,7 +7,7 @@ import (
 
 func RegisterRouter(e *echo.Echo, tl internal.TodoList) *echo.Echo {
 
-	e.GET("/", CreateTask(tl))
+	e.POST("/create", CreateTask(tl))
 
 	return e
 }
