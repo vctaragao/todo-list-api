@@ -2,6 +2,7 @@ package functional
 
 import (
 	"bytes"
+	"fmt"
 	client "net/http"
 	"net/http/httptest"
 
@@ -12,13 +13,16 @@ import (
 )
 
 func Request(method, uri string, reqBody []byte) *client.Response {
-	go initApp()
+	initApp()
 
+	fmt.Println("Building the request")
 	req := httptest.NewRequest(method, "http://localhost:1323"+uri, bytes.NewBuffer(reqBody))
 	req.RequestURI = ""
 	req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
 	client := &client.Client{}
+	fmt.Println("Making the request")
 	resp, err := client.Do(req)
+	fmt.Println("Request Finished")
 
 	if err != nil {
 		panic(err)
@@ -34,5 +38,9 @@ func initApp() {
 
 	e := http.RegisterRouter(echo.New(), tl)
 
-	e.Logger.Fatal(e.Start(":1323"))
+	go startServer(e)
+}
+
+func startServer(e *echo.Echo) {
+	go e.Logger.Fatal(e.Start(":1323"))
 }

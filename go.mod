@@ -3,7 +3,6 @@ module github.com/vctaragao/todo-list-api
 go 1.19
 
 require (
-	github.com/labstack/echo v3.3.10+incompatible
 	github.com/labstack/echo/v4 v4.10.0
 	github.com/stretchr/testify v1.8.1
 	gorm.io/driver/sqlite v1.4.4
