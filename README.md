@@ -38,6 +38,11 @@ This app has the porpuse to be used for the study of the Go programming language
 
 - [ ] Create a Functional testsuite that roolbacks the database after every test
 
+### Erro Handling
+
+- [ ] Add erro handler for the application following the right http status code for each error
+- [ ] Add a package to have a nice stack trace when an error accours
+
 ## Architeture/Desing
 
 The ideia of the archtecture/desing of this project is focus um using three main principels:
