@@ -77,14 +77,24 @@ Its being used as a guidence for the folder struct of the project:
 │   └── todo_list.go
 ├── Makefile
 ├── README.md
-└── storage
-    └── dummy_adapter.go
+├── storage
+│   ├── dummy_adapter.go
+│   ├── schemas
+│   │   └── task.go
+│   └── sqlite_adapter.go
+├── tests
+│   └── functional
+│       ├── create_task_test.go
+│       └── test_app.go
+└── todo_list.db
 ```
 
 - **Framewors layer**
   - `/api`: Folder that will contain the different entrypoints of the project (http, cli, grpc, etc)
   - `/storage`: Folder that will container the differentes ways of persistance that the project has (Mysql, Memory, Redis, etc.)
   - `/cmd`: Folder for holding the main files of the project.
+  - `/tests`: Folder for the tests that verify the funcionalities of the application integrating all of its layers
+  - `/tests/functional`: Functional tests
 - **Application Layer**
   - `internal/todo_list.go`: File to serve as a Facade for the application as the name follows the name of the project
   - `/internal/application/*.go`: Files to be for general use inside the application layer (repository.go, etc.)
