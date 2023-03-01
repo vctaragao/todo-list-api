@@ -2,8 +2,6 @@ package functional
 
 import (
 	"encoding/json"
-	"fmt"
-	"io"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -11,26 +9,20 @@ import (
 )
 
 func TestCreateTask(t *testing.T) {
-	reqBody, _ := json.Marshal(map[string]interface{}{
-		"description": "Milk, eggs, bread",
-		"priority":    1,
-	})
+	dto := http.TaskDto{TaskId: 0, Description: "Implement functional tests", Priority: 1}
+
+	reqBody, _ := json.Marshal(dto)
 
 	resp := Request("POST", "/create", reqBody)
 
 	assert.Equal(t, 200, resp.StatusCode)
 
-	body, err := io.ReadAll(resp.Body)
-
-	defer resp.Body.Close()
-
-	assert.NoError(t, err)
-	fmt.Printf("%v", string(body))
-
-	var tasks []http.TaskDto
-	err = json.Unmarshal(body, &tasks)
+	var task http.TaskDto
+	err := DecodeBody(resp, &task)
 
 	assert.NoError(t, err)
 
-	fmt.Printf("%v", tasks)
+	assert.Equal(t, 1, task.TaskId)
+	assert.Equal(t, dto.Description, task.Description)
+	assert.Equal(t, dto.Priority, task.Priority)
 }

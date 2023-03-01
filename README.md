@@ -9,7 +9,7 @@ This app has the porpuse to be used for the study of the Go programming language
 ### DOMAIN - CRUD Task
 
 - [x] Create Task
-  - [ ] Functional Test (Integrating route and database)
+  - [x] Functional Test (Integrating route and database)
   - [x] Unit test for the Use Case
 - [ ] Remove Task
   - [ ] Functional Test (Integrating route and database)

@@ -2,8 +2,9 @@ package functional
 
 import (
 	"bytes"
-	"fmt"
-	client "net/http"
+	"encoding/json"
+	"io"
+	net_http "net/http"
 	"net/http/httptest"
 
 	"github.com/labstack/echo/v4"
@@ -12,17 +13,11 @@ import (
 	"github.com/vctaragao/todo-list-api/storage"
 )
 
-func Request(method, uri string, reqBody []byte) *client.Response {
+func Request(method, uri string, reqBody []byte) *net_http.Response {
 	initApp()
-
-	fmt.Println("Building the request")
-	req := httptest.NewRequest(method, "http://localhost:1323"+uri, bytes.NewBuffer(reqBody))
-	req.RequestURI = ""
-	req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
-	client := &client.Client{}
-	fmt.Println("Making the request")
+	req := createRequest(method, uri, reqBody)
+	client := &net_http.Client{}
 	resp, err := client.Do(req)
-	fmt.Println("Request Finished")
 
 	if err != nil {
 		panic(err)
@@ -41,6 +36,32 @@ func initApp() {
 	go startServer(e)
 }
 
+func createRequest(method, uri string, reqBody []byte) *net_http.Request {
+	req := httptest.NewRequest(method, "http://localhost:1323"+uri, bytes.NewBuffer(reqBody))
+	req.RequestURI = ""
+	req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
+
+	return req
+}
+
 func startServer(e *echo.Echo) {
 	go e.Logger.Fatal(e.Start(":1323"))
+}
+
+func DecodeBody(resp *net_http.Response, dto interface{}) error {
+	body, err := io.ReadAll(resp.Body)
+
+	defer resp.Body.Close()
+
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(body, &dto)
+
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
