@@ -1,0 +1,29 @@
+version: '3.1'
+
+services:
+  app:
+    container_name: todo-list-api
+    build: .
+    tty: true
+    environment:
+      DBHOST: db
+      DBUSER: app
+      DBNAME: todo-list
+      DBPASSWORD: test
+      DBPORT: 5432
+    ports:
+      - "1323:1323"
+    volumes:
+      - .:/user/src/app
+    depends_on:
+      - db
+  db:
+    container_name: todo-list-db
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_DB: todo-list
+      POSTGRES_PASSWORD: test
+    ports:
+      - "5432:5432"
