@@ -47,6 +47,7 @@ This app has the porpuse to be used for the study of the Go programming language
 
 - [x] Run the application inside docker
 - [x] Setup docker compose to run locally
+- [ ] CI for running tests on every Pull Request, to check that nothin broke
 
 ## Deploy
 
