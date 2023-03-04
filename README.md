@@ -43,6 +43,17 @@ This app has the porpuse to be used for the study of the Go programming language
 - [ ] Add erro handler for the application following the right http status code for each error
 - [ ] Add a package to have a nice stack trace when an error accours
 
+## Infrastructure
+
+- [x] Run the application inside docker
+- [x] Setup docker compose to run locally
+- [ ] CI for running tests on every Pull Request, to check that nothin broke
+
+## Deploy
+
+- [ ] Setup CD
+- [ ] Deploy to a Cloud Function
+
 ## Architeture/Desing
 
 The ideia of the archtecture/desing of this project is focus um using three main principels:

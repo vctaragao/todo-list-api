@@ -7,10 +7,8 @@ import (
 	"github.com/vctaragao/todo-list-api/storage"
 )
 
-const SQLITE_FILE_PATH = "todo_list.db"
-
 func main() {
-	repo := storage.NewSqLite(SQLITE_FILE_PATH)
+	repo := storage.NewPostgress()
 
 	tl := internal.NewTodoList(repo)
 
