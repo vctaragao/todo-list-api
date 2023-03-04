@@ -1,15 +1,11 @@
 package storage
 
 import (
-	"fmt"
-
 	"github.com/vctaragao/todo-list-api/internal/application/entity"
 	"github.com/vctaragao/todo-list-api/storage/schemas"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
-
-var ErrUnableToInsertTask = fmt.Errorf("unable to insert task into database")
 
 type SqLite struct {
 	Db *gorm.DB
