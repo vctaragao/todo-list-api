@@ -1,7 +1,8 @@
 package storage
 
 import (
-	"github.com/vctaragao/todo-list-api/internal/application/entity"
+	"github.com/vctaragao/todo-list-api/internal/aplication/entity"
+	"github.com/vctaragao/todo-list-api/internal/aplication/value_object"
 	"github.com/vctaragao/todo-list-api/storage/schemas"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
@@ -26,7 +27,7 @@ func NewSqLite(file string) *SqLite {
 	}
 }
 
-func (s *SqLite) AddTask(t entity.Task) (int, error) {
+func (s *SqLite) AddTask(t value_object.TaskForCreation) (int, error) {
 	task := schemas.Task{Description: t.Description, Priority: t.Priority}
 	result := s.Db.Create(&task)
 
@@ -35,4 +36,8 @@ func (s *SqLite) AddTask(t entity.Task) (int, error) {
 	}
 
 	return int(task.ID), nil
+}
+
+func (s *SqLite) DeleteTask(t entity.Task) error {
+	return nil
 }

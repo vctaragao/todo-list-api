@@ -3,7 +3,8 @@ package storage
 import (
 	"os"
 
-	"github.com/vctaragao/todo-list-api/internal/application/entity"
+	"github.com/vctaragao/todo-list-api/internal/aplication/entity"
+	"github.com/vctaragao/todo-list-api/internal/aplication/value_object"
 	"github.com/vctaragao/todo-list-api/storage/schemas"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -34,7 +35,7 @@ func NewPostgress() *Postgress {
 	}
 }
 
-func (p *Postgress) AddTask(t entity.Task) (int, error) {
+func (p *Postgress) AddTask(t value_object.TaskForCreation) (int, error) {
 	task := schemas.Task{Description: t.Description, Priority: t.Priority}
 	result := p.Db.Create(&task)
 
@@ -43,4 +44,8 @@ func (p *Postgress) AddTask(t entity.Task) (int, error) {
 	}
 
 	return int(task.ID), nil
+}
+
+func (p *Postgress) DeleteTask(t entity.Task) error {
+	return nil
 }
