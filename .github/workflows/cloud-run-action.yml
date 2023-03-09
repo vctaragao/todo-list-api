@@ -1,6 +1,9 @@
 name: publish
 
-on: [push]
+on:
+  push:
+    branches:
+      - "main"
 
 jobs:
   build:
@@ -8,10 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
+        uses: actions/checkout@v2
 
       - name: Setup GCP Service Account
-        uses: GoogleCloudPlatform/github-actions/setup-gcloud@main
+        uses: GoogleCloudPlatform/github-actions/setup-gcloud@v0
         with:
           version: "latest"
           service_account_email: ${{ secrets.GCP_SA_EMAIL }}
