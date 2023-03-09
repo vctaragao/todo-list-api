@@ -14,11 +14,15 @@ type Postgress struct {
 }
 
 func NewPostgress() *Postgress {
-	dbHost := os.Getenv("DBHOST")
-	dbUser := os.Getenv("DBUSER")
-	dbPassword := os.Getenv("DBPASSWORD")
-	dbName := os.Getenv("DBNAME")
-	dbPort := os.Getenv("DBPORT")
+	dbHost := os.Getenv("DB_HOST")
+	dbUser := os.Getenv("DB_USER")
+	dbPassword := os.Getenv("DB_PASSWORD")
+	dbName := os.Getenv("DB_NAME")
+	dbPort := os.Getenv("DB_PORT")
+
+	if dbPort == "" {
+		dbPort = "80"
+	}
 
 	dsn := "host=" + dbHost + " user=" + dbUser + " password=" + dbPassword + " dbname=" + dbName + " port=" + dbPort + " sslmode=disable TimeZone=America/Sao_Paulo"
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
