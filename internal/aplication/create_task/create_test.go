@@ -5,10 +5,13 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/vctaragao/todo-list-api/internal/application/entity"
+	"github.com/vctaragao/todo-list-api/internal/aplication/dto"
+	"github.com/vctaragao/todo-list-api/internal/aplication/entity"
+	"github.com/vctaragao/todo-list-api/internal/aplication/value_object"
 )
 
 type testCase struct {
+	id          int
 	description string
 	priority    int
 	expected    int
@@ -20,7 +23,7 @@ type MockRepo struct {
 	err error
 }
 
-func (mr MockRepo) AddTask(t entity.Task) (int, error) {
+func (mr MockRepo) AddTask(t value_object.TaskForCreation) (int, error) {
 	if mr.err != nil {
 		return 0, mr.err
 	}
@@ -28,15 +31,21 @@ func (mr MockRepo) AddTask(t entity.Task) (int, error) {
 	return mr.id, nil
 }
 
+func (mr MockRepo) DeleteTask(t entity.Task) error {
+	return nil
+}
+
 var testCases = []testCase{
 	{
 		description: "isso é uma tarefa",
+		id:          1,
 		priority:    1,
 		expected:    1,
 		err:         nil,
 	},
 	{
 		description: "isso é uma tarefa com err",
+		id:          1,
 		priority:    1,
 		expected:    0,
 		err:         errors.New("erro vindo da task"),
@@ -62,8 +71,8 @@ func TestCreateTask(t *testing.T) {
 	}
 }
 
-func setup(tc testCase) (TaskDto, MockRepo) {
-	dto, _ := NewDto(tc.description, tc.priority)
+func setup(tc testCase) (dto.TaskDto, MockRepo) {
+	dto := dto.NewDto(tc.id, tc.description, tc.priority)
 
 	repo := MockRepo{
 		id:  tc.expected,
