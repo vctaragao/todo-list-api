@@ -7,14 +7,13 @@ jobs:
     name: Cloud Run Deployment
     runs-on: ubuntu-latest
     steps:
-
       - name: Checkout
         uses: actions/checkout@master
 
       - name: Setup GCP Service Account
-        uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        uses: GoogleCloudPlatform/github-actions/setup-gcloud@main
         with:
-          version: 'latest'
+          version: "latest"
           service_account_email: ${{ secrets.GCP_SA_EMAIL }}
           service_account_key: ${{ secrets.GCP_SA_KEY }}
           export_default_credentials: true
@@ -22,10 +21,10 @@ jobs:
       - name: Configure Docker
         run: |
           gcloud auth configure-docker
-      
+
       - name: Build
         run: |
-          docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/todo-list-api:latest .
+          docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/todo-list-api:latest -f todo-list-api/ .
 
       - name: Push
         run: |
