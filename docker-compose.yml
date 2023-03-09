@@ -6,11 +6,11 @@ services:
     build: .
     tty: true
     environment:
-      DBHOST: db
-      DBUSER: app
-      DBNAME: todo-list
-      DBPASSWORD: test
-      DBPORT: 5432
+      DB_HOST: db
+      DB_USER: app
+      DB_NAME: todo-list
+      DB_PASSWORD: test
+      DB_PORT: 5432
     ports:
       - "1323:1323"
     volumes:

@@ -26,7 +26,7 @@ This app has the porpuse to be used for the study of the Go programming language
 
 ### Storage
 
-- [ ] Persist the informations into a MySql or Postgress database
+- [x] Persist the informations into a MySql or Postgress database
 - [x] Use Repositories to create the abstraction layer between the Core Model and the db
 
 ### Http
